@@ -9,7 +9,7 @@ const ProductController = require('../controllers/products')
 //PUT - ATUALIZAR DADOS
 //DELETE - REMOVER   DADOS
 
-router.get('/products', ProductController.get)
+router.get('/products/:id?', ProductController.get)
 //router.post('/products/:id', ProductController.post)
 //router.put('/products/:id', ProductController.put)
 //router.delete('/products/:id', ProductController.delete)
