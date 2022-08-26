@@ -1,6 +1,6 @@
 //importando bibliotecas
 const express = require('express')
-//const path = require('path')
+const cors = require('cors')
 
 
 const db = require('./database/db')
@@ -13,6 +13,27 @@ const app = express()
 
 //conexão com o banco de dados
 db.connect()
+
+const allowedOrigins = [
+    'http://127.0.0.1:5500',
+    'http://www.app.com.br',
+]
+
+
+
+//habilita cors
+app.use(cors({
+    origin: function(origin, callback) {
+        let allowed = true 
+
+        //mobile app
+        if (!origin) allowed = true
+
+        if (!allowedOrigins.includes(origin)) allowed = false
+
+        callback(null, allowed)
+    }
+}))
 
 //habilita server para receber dados no format json
 app.use(express.json())
